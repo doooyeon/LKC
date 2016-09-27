@@ -6,14 +6,14 @@ import java.util.Vector;
 import contents.Contents;
 
 public class ClientInitData implements Serializable{
-	Vector<Contents> history;
-	Vector<String> clients;
+	private static Vector<Contents> history;
+	private static Vector<String> clients;
 
 	public Vector<Contents> getHistory() {
-		return this.history;
+		return ClientInitData.history;
 	}
 
 	public Vector<String> getClients() {
-		return this.clients;
+		return ClientInitData.clients;
 	}
 }

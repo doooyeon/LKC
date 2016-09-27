@@ -26,7 +26,7 @@ public class LinKlipboardClient {
 	private String password; // 패스워드
 	private static String nickName = null; // 닉네임
 	private static int portNum; // 서버와 통신할 포트번호
-	private Vector<String> otherClients = new Vector<String>(); // 같은 그룹 접속자들의 닉네임
+	private static Vector<String> otherClients = new Vector<String>(); // 같은 그룹 접속자들의 닉네임
 
 	private static String firstShortcutForSend = "Ctrl"; // 전송 첫번째 단축키
 	private static String secondShortcutForSend = "Q"; // 전송 두번째 단축키
@@ -249,6 +249,7 @@ public class LinKlipboardClient {
 	public static void setHistory() {
 		history.setHistory();
 	}
+	
 
 	/**
 	 * 클라이언트의 history를 세팅
@@ -262,13 +263,13 @@ public class LinKlipboardClient {
 	}
 
 	/** 같은 그룹 접속자들의 닉네임 세팅 */
-	public void setOtherClients(Vector<String> clients) {
-		this.otherClients = new Vector<String>(clients);
+	public static void setOtherClients(Vector<String> clients) {
+		LinKlipboardClient.otherClients = new Vector<String>(clients);
 	}
 
 	/** 같은 그룹 접속자들의 닉네임을 반환 */
-	public Vector<String> getOtherClients() {
-		return this.otherClients;
+	public static Vector<String> getOtherClients() {
+		return LinKlipboardClient.otherClients;
 	}
 	
 	/** 클라이언트의 모든 정보를 초기화 */

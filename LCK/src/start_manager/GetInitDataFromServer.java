@@ -66,12 +66,14 @@ public class GetInitDataFromServer extends Transfer {
 			//System.out.println("[GetTotalHistoryFromServer]" + historyInServer.get(0).getType());
 
 			// 클라이언트 히스토리에 세팅해준다.
-			Vector<String> otherClientsInfo = initData.getClients(); 
+			LinKlipboardClient.setOtherClients(initData.getClients());
 			//Vector<Contents> history = initData.getHistory(); 
 			
 			//LinKlipboardClient.setHistory(history);
-			client.setOtherClients(otherClientsInfo); 
+			//client.setOtherClients(otherClientsInfo); 
 
+			System.out.println("서버로부터 수신 후 접속자 수 : " + LinKlipboardClient.getOtherClients().size());
+			
 			connectionPanel.updateAccessGroup();
 			connectionPanel.updateGroupName();
 			connectionPanel.updateSharedContents();

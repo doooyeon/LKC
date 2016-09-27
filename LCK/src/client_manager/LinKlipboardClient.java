@@ -262,9 +262,14 @@ public class LinKlipboardClient {
 		history.setHistory(updateHistory);
 	}
 
-	/** 같은 그룹 접속자들의 닉네임 세팅 */
+	/** 같은 그룹 접속자들의 닉네임 세팅 
+	 * 받은 접속자들의 크기만큼 String 벡터를 세팅 */
 	public static void setOtherClients(Vector<String> clients) {
-		LinKlipboardClient.otherClients = new Vector<String>(clients);
+		//LinKlipboardClient.otherClients = new Vector<String>(clients);
+		for(int i=0; i<clients.size(); i++){
+			LinKlipboardClient.otherClients.set(i, clients.elementAt(i));
+		}
+		
 	}
 
 	/** 같은 그룹 접속자들의 닉네임을 반환 */

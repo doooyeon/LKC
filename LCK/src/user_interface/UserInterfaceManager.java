@@ -226,24 +226,37 @@ class NicknameDialog extends JDialog {
 
 				switch (keyCode) {
 				case KeyEvent.VK_ENTER:
-					if (getInput().length() == 0) {
-						errorLabel.setText("닉네임 필수 입력");
-					} else {
-						// new
-						// StartToProgram(client).requestChangeInfoToServer(getInput());
-						// // 닉네임 중복처리
-
-						// 승인되면
-						LinKlipboardClient.setNickName(getInput());
-
-						client.getOtherClients().add(getInput()); // 자신도 추가
-						System.out.println("[page1] " + client.getOtherClients().size());
-						page2.getConnectionPanel().updateGroupName();
-						page2.getConnectionPanel().updateAccessGroup();
-						jf.setContentPane(page2);
-						setVisible(false);
-						page1.initField();
-					}
+					 if (getInput().length() == 0) {
+		                 errorLabel.setText("닉네임 필수 입력");
+		              }
+		              // 사용자가 뭐라도 입력했으면
+		              else {
+		                 System.out.println("[NicknameDialog] 변경요청 전");
+		                 // 서버에 정보 변경 요청
+		                 new StartToProgram(client).requestChangeInfoToServer(getInput());
+		        
+		                 // 전달받은 respoonse가 COMPLETE_APPLY이면
+		                 if (ResponseHandler.getErrorCodeNum() == LinKlipboard.COMPLETE_APPLY) {
+		                    // 접속한 사람들의 닉네임 벡터를 얻어온다.
+		                    new GetInitDataFromServer(client, page2.getConnectionPanel());
+		        
+		                    // 클라이언트 닉네임을 세팅
+		                    LinKlipboardClient.setNickName(getInput());
+		        
+		                    // 접속자에 자신도 추가
+		                    client.getOtherClients().add(getInput());
+		                    System.out.println("[NicknameDialog] 접속자 수: " +  client.getOtherClients().size());
+		                    page2.getConnectionPanel().updateGroupName();
+		                    page2.getConnectionPanel().updateAccessGroup();
+		                    jf.setContentPane(page2);
+		                    setVisible(false);
+		                    page1.initField();
+		                 }
+		                 // 닉네임 중복오류 포함한 오류이면
+		                 else if (ResponseHandler.getErrorCodeNum() == LinKlipboard.ERROR_DUPLICATED_NICKNAME) {
+		                    errorLabel.setText("닉네임 중복");
+		                 }
+		              }
 				}
 			}
 		});

@@ -6,14 +6,16 @@ import java.util.Vector;
 import contents.Contents;
 
 public class ClientInitData implements Serializable{
-	private static Vector<Contents> history;
-	private static Vector<String> clients;
+	private static final long serialVersionUID = -6494489325228283099L;
+	
+	private Vector<Contents> history;
+	private Vector<String> clients;
 
 	public Vector<Contents> getHistory() {
-		return ClientInitData.history;
+		return history;
 	}
 
 	public Vector<String> getClients() {
-		return ClientInitData.clients;
+		return clients;
 	}
 }

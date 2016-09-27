@@ -320,7 +320,7 @@ public class LinKlipboardClient {
 		/** 서버의 연결을 기다리는 소켓 설정 */
 		public void waitToServer() {
 			try {
-				System.out.println("[ReceiveContents] 사용 포트번호: " + LinKlipboardClient.getPortNum() + 1);
+				System.out.println("[ReceiveContents] 사용 포트번호: " + (LinKlipboardClient.getPortNum() + 1));
 				listener = new ServerSocket(LinKlipboardClient.getPortNum() + 1);
 				socket = listener.accept();
 			} catch (IOException e) {

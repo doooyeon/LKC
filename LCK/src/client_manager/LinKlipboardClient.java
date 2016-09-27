@@ -321,7 +321,7 @@ public class LinKlipboardClient {
 		public void waitToServer() {
 			try {
 				System.out.println("[ReceiveContents] 사용 포트번호: " + (LinKlipboardClient.getPortNum() + 1));
-				listener = new ServerSocket(LinKlipboardClient.getPortNum() + 1);
+				listener = new ServerSocket((LinKlipboardClient.getPortNum() + 1));
 				socket = listener.accept();
 			} catch (IOException e) {
 				e.printStackTrace();

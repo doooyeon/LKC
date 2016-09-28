@@ -64,7 +64,7 @@ public class FileSendDataToServer extends Thread {
 			String fileName = "fileName=" + sendFile.getName();
 
 			String header = groupName + "&" + fileName;
-			System.out.println("[requestSendFileData] 보낼 전체 데이터 확인" + header);
+			System.out.println("[requestSendFileData] 보낼 전체 데이터 확인: " + header);
 
 			bout.write(header);
 			bout.flush();

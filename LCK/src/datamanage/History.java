@@ -120,13 +120,13 @@ public class History {
 	}
 
 	// /* 새로운 클라이언트 접속 시 기존의 history를 넘겨주지 않는다. */
-	// public void setHistory(Vector<Contents> updateHistory) {
-	// System.out.println("[History] setHistory메소드 호출");
-	// sharedContents = new Vector<Contents>();
-	// resizingImgContents = new Vector<ImageIcon>();
-	// initSharedContents(updateHistory);
-	// InitResizingImgContents();
-	// }
+	 public void setHistory(Vector<Contents> updateHistory) {
+	 System.out.println("[History] setHistory메소드 호출");
+	 sharedContents = new Vector<Contents>();
+	 resizingImgContents = new Vector<ImageIcon>();
+	 initSharedContents(updateHistory);
+	 InitResizingImgContents();
+	 }
 
 	/** index에 해당하는 Contents를 반환 */
 	public Contents getRequestContents(int index) {

@@ -20,6 +20,8 @@ import contents.FileContents;
 import contents.StringContents;
 import server_manager.LinKlipboard;
 import transfer_manager.FileReceiveDataToServer;
+import transfer_manager.FileSendDataToServer;
+import transfer_manager.SendDataToServer;
 
 public class ConnectionPanel extends BasePanel {
 	private JLabel accessGroupNameLabel; // 자신이 속한 그룹명
@@ -35,8 +37,8 @@ public class ConnectionPanel extends BasePanel {
 
 	private JButton receiveButton = new JButton();
 
-	// private SendDataToServer sendStrImg;
-	// private FileSendDataToServer sendFile;
+	private SendDataToServer sendStrImg;
+	private FileSendDataToServer sendFile;
 	private FileReceiveDataToServer receiveFile;
 
 	public ConnectionPanel(LinKlipboardClient client) {

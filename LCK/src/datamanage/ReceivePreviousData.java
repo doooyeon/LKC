@@ -83,7 +83,7 @@ public class ReceivePreviousData {
 			String header = "groupName=" + LinKlipboardClient.getGroupName() + "&";
 			header += "serialNum=" + serialNum + "\r\n";
 
-			System.out.println("[ReceivePreviousData] 보낼 전체 데이터 확인" + header);
+			System.out.println("[ReceivePreviousData] 보낼 전체 데이터 확인: " + header);
 
 			bout.write(header);
 			bout.flush();

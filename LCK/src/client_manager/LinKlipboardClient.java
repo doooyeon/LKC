@@ -248,17 +248,17 @@ public class LinKlipboardClient {
 		history.setHistory();
 	}
 
-//	/* 새로운 클라이언트 접속 시 기존의 history를 넘겨주지 않는다. */
-//	/**
-//	 * 클라이언트의 history를 세팅
-//	 * 
-//	 * @param updateHistory
-//	 *            server에서 받아온 Vector<Contents>
-//	 */
-//	public static void setHistory(Vector<Contents> updateHistory) {
-//		System.out.println("[LlinKlipboardClient] setHistory메소드 호출");
-//		history.setHistory(updateHistory);
-//	}
+	/* 새로운 클라이언트 접속 시 기존의 history를 넘겨주지 않는다. */
+	/**
+	 * 클라이언트의 history를 세팅
+	 * 
+	 * @param updateHistory
+	 *            server에서 받아온 Vector<Contents>
+	 */
+	public static void setHistory(Vector<Contents> updateHistory) {
+		System.out.println("[LlinKlipboardClient] setHistory메소드 호출");
+		history.setHistory(updateHistory);
+	}
 
 	/**
 	 * 같은 그룹 접속자들의 닉네임 세팅 받은 접속자들의 크기만큼 String 벡터를 세팅

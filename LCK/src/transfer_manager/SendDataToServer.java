@@ -53,7 +53,7 @@ public class SendDataToServer extends Thread {
 			BufferedWriter bout = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 			String header = "groupName=" + LinKlipboardClient.getGroupName();
 
-			System.out.println("[requestSendExpFileData] 보낼 전체 데이터 확인" + header);
+			System.out.println("[requestSendExpFileData] 보낼 전체 데이터 확인: " + header);
 
 			bout.write(header);
 			bout.flush();

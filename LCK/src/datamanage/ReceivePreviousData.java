@@ -97,7 +97,7 @@ public class ReceivePreviousData {
 				// 서버에서 확인 후 클라이언트가 받은 결과 메세지
 				this.response = response;
 			}
-			System.out.println("[ReceivePreviousData] 서버로부터의 응답 데이터 확인: " + this.response); // delf
+			System.out.println("[ReceivePreviousData] 서버로부터의 응답 데이터 확인: " + this.response);
 			bin.close();
 
 			exceptionHandling(this.response);

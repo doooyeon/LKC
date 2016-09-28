@@ -54,9 +54,6 @@ public class LinKlipboardClient {
 		createFileReceiveFolder(); // LinKlipboard folder 생성
 
 		this.main = main;
-		// this.receiveContentsThread = new ReceiveContents(); // Contents를 받는
-		// 스레드 생성
-		// receiveContentsThread.start(); // 스레드 start
 	}
 
 	/**
@@ -72,10 +69,6 @@ public class LinKlipboardClient {
 		this.password = groupPassword;
 
 		createFileReceiveFolder(); // LinKlipboard folder 생성
-
-		// this.receiveContentsThread = new ReceiveContents(); // 최신 Contents를
-		// 받는 스레드 생성
-		// receiveContentsThread.start(); // 스레드 start
 	}
 
 	public void createstartThread(int port) {
@@ -255,16 +248,17 @@ public class LinKlipboardClient {
 		history.setHistory();
 	}
 
-	/**
-	 * 클라이언트의 history를 세팅
-	 * 
-	 * @param updateHistory
-	 *            server에서 받아온 Vector<Contents>
-	 */
-	public static void setHistory(Vector<Contents> updateHistory) {
-		System.out.println("[LlinKlipboardClient] setHistory메소드 호출");
-		history.setHistory(updateHistory);
-	}
+//	/* 새로운 클라이언트 접속 시 기존의 history를 넘겨주지 않는다. */
+//	/**
+//	 * 클라이언트의 history를 세팅
+//	 * 
+//	 * @param updateHistory
+//	 *            server에서 받아온 Vector<Contents>
+//	 */
+//	public static void setHistory(Vector<Contents> updateHistory) {
+//		System.out.println("[LlinKlipboardClient] setHistory메소드 호출");
+//		history.setHistory(updateHistory);
+//	}
 
 	/**
 	 * 같은 그룹 접속자들의 닉네임 세팅 받은 접속자들의 크기만큼 String 벡터를 세팅
@@ -287,8 +281,6 @@ public class LinKlipboardClient {
 
 	/** 클라이언트의 모든 정보를 초기화 */
 	public void initAllInfo() {
-		// UserInterfaceManager main;
-
 		otherClients.removeAllElements();
 		; // 같은 그룹 접속자들의 닉네임 초기화
 
@@ -302,11 +294,6 @@ public class LinKlipboardClient {
 		history.removeAllHistory(); // 히스토리 초기화
 
 		latestContents = null; // 최신데이터
-
-		// receiveContentsThread.interrupt(); // 기존의 스레드 죽이고
-		// this.receiveContentsThread = new ReceiveContents(); // Contents를 받는
-		// 스레드 다시 생성
-		// receiveContentsThread.start(); // 스레드 start
 	}
 
 	/**

@@ -77,8 +77,8 @@ public class SendDataToServer extends Thread {
 
 				this.start();
 			}
-
 			bin.close();
+
 		} catch (MalformedURLException ex) {
 			ex.printStackTrace();
 		} catch (IOException ex) {
@@ -133,11 +133,12 @@ public class SendDataToServer extends Thread {
 	public void run() {
 		setConnection();
 		try {
-			sendContents = ClipboardManager.readClipboard(); // 전송할 객체를 시스템 클립보드로부터 가져옴
-			
+			sendContents = ClipboardManager.readClipboard(); // 전송할 객체를 시스템
+																// 클립보드로부터 가져옴
+
 			// 히스토리에 추가할 Contents의 고유번호 세팅
 			Contents.setSerialNum(serialNum);
-			
+
 			// 공유한 날짜, 시간 설정
 			sendContents.setDate();
 			sendContents.setSharer(client.getNickName());

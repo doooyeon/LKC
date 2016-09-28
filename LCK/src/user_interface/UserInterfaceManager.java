@@ -86,13 +86,7 @@ public class UserInterfaceManager extends JFrame {
 			@Override
 			public void keyPressed(GlobalKeyEvent event) {
 				char secondShortcutForSend = LinKlipboardClient.getSecondShortcutForSend().charAt(0);
-				int getKeyCodeForSend = (int) secondShortcutForSend; // int
-				// keyCode를
-				// 얻어와
-				// event,VK_
-				// 꼴로
-				// 만들어야함
-
+				int getKeyCodeForSend = (int) secondShortcutForSend;
 				char secondShortcutForReceive = LinKlipboardClient.getSecondShortcutForReceive().charAt(0);
 				int getKeyCodeForReceive = (int) secondShortcutForReceive;
 
@@ -149,8 +143,8 @@ public class UserInterfaceManager extends JFrame {
 	public static void receiveData(LinKlipboardClient client) {
 		client.settLatestContents();
 
-		Contents latestContentsFromServer = client.getLatestContents();
-		int latestContentsType = client.getLatestContents().getType();
+		Contents latestContentsFromServer = LinKlipboardClient.getLatestContents();
+		int latestContentsType = LinKlipboardClient.getLatestContents().getType();
 
 		if (latestContentsType == LinKlipboard.FILE_TYPE) {
 			new FileReceiveDataToServer(client).requestReceiveFileData();
@@ -244,8 +238,9 @@ class NicknameDialog extends JDialog {
 							LinKlipboardClient.setNickName(getInput());
 
 							// 접속자에 자신도 추가
-							client.getOtherClients().add(getInput());
-							System.out.println("[NicknameDialog] 접속자 수: " + client.getOtherClients().size());
+							LinKlipboardClient.getOtherClients().add(getInput());
+							System.out
+									.println("[NicknameDialog] 접속자 수: " + LinKlipboardClient.getOtherClients().size());
 							page2.getConnectionPanel().updateGroupName();
 							page2.getConnectionPanel().updateAccessGroup();
 							jf.setContentPane(page2);
@@ -289,8 +284,8 @@ class NicknameDialog extends JDialog {
 						LinKlipboardClient.setNickName(getInput());
 
 						// 접속자에 자신도 추가
-						client.getOtherClients().add(getInput());
-						System.out.println("[NicknameDialog] 접속자 수: " + client.getOtherClients().size());
+						LinKlipboardClient.getOtherClients().add(getInput());
+						System.out.println("[NicknameDialog] 접속자 수: " + LinKlipboardClient.getOtherClients().size());
 						page2.getConnectionPanel().updateGroupName();
 						page2.getConnectionPanel().updateAccessGroup();
 						jf.setContentPane(page2);

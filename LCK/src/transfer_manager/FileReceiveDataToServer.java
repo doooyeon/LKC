@@ -30,7 +30,7 @@ public class FileReceiveDataToServer extends Thread {
 
 	private String response; // 서버로부터 받은 응답 정보
 	private ResponseHandler responseHandler; // 응답에 대한 처리
-	
+
 	// 파일을 읽고 쓰기위한 파일 스트림 설정
 	private FileOutputStream fos;
 	private DataInputStream dis;
@@ -111,12 +111,13 @@ public class FileReceiveDataToServer extends Thread {
 	/** 서버와의 연결을 위한 소켓과 스트림 설정 */
 	public void setConnection() {
 		try {
-			
+
 			System.out.println("파일리시브" + LinKlipboardClient.getPortNum());
 			// 소켓 접속 설정
 			socket = new Socket(LinKlipboard.SERVER_IP, LinKlipboardClient.getPortNum());
 			// 스트림 설정
-			dis = new DataInputStream(socket.getInputStream()); // 바이트 배열을 받기 위한 데이터스트림 생성
+			dis = new DataInputStream(socket.getInputStream()); // 바이트 배열을 받기 위한
+																// 데이터스트림 생성
 			System.out.println("[FileReceiveDataToServer] 연결 설정 끝");
 
 		} catch (UnknownHostException e) {
@@ -145,17 +146,23 @@ public class FileReceiveDataToServer extends Thread {
 		try {
 			LinKlipboardClient.initDir(); // 파일삽입 전 폴더 초기화
 
-			byte[] ReceiveByteArrayToFile = new byte[LinKlipboard.byteSize]; // 바이트 배열 생성
+			byte[] ReceiveByteArrayToFile = new byte[LinKlipboard.byteSize]; // 바이트
+																				// 배열
+																				// 생성
 			int EndOfFile = 0; // 파일의 끝(-1)을 알리는 변수 선언
 
 			System.out.println("[FileReceiveDataToServer] 지정 경로: " + receiveFilePath);
-			fos = new FileOutputStream(receiveFilePath); // 지정한 경로에 바이트 배열을 쓰기위한 파일 스트림 생성
+			fos = new FileOutputStream(receiveFilePath); // 지정한 경로에 바이트 배열을 쓰기위한
+															// 파일 스트림 생성
 
 			/*
-			 * ReceiveByteArrayToFile의 크기인 1024바이트 만큼 DataInputStream에서 바이트를 읽어 바이트 배열에 저장, EndOfFile에는 1024가 들어있음 DataInputStream에서 바이트를 다 읽어올 때(EndOfFile=-1 일 때)까지 반복
+			 * ReceiveByteArrayToFile의 크기인 1024바이트 만큼 DataInputStream에서 바이트를 읽어
+			 * 바이트 배열에 저장, EndOfFile에는 1024가 들어있음 DataInputStream에서 바이트를 다 읽어올
+			 * 때(EndOfFile=-1 일 때)까지 반복
 			 */
 			while ((EndOfFile = dis.read(ReceiveByteArrayToFile)) != -1) {
-				// ReceiveByteArrayToFile에 들어있는 바이트를 0~EndOfFile=1024 만큼 FileOutputStream으로 보냄
+				// ReceiveByteArrayToFile에 들어있는 바이트를 0~EndOfFile=1024 만큼
+				// FileOutputStream으로 보냄
 				fos.write(ReceiveByteArrayToFile, 0, EndOfFile);
 			}
 

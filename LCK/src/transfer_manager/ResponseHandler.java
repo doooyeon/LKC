@@ -49,8 +49,8 @@ public class ResponseHandler {
 				break;
 			case LinKlipboard.RES_PORT:
 				resPortNum = Integer.parseInt(tokens.nextToken());
-				//client.setPortNum(resPortNum);
-				System.out.println("resPortNum: "+ resPortNum);
+				// client.setPortNum(resPortNum);
+				System.out.println("resPortNum: " + resPortNum);
 				client.createstartThread(resPortNum);
 				break;
 			default:
@@ -126,8 +126,8 @@ public class ResponseHandler {
 		if (errorCodeNum == LinKlipboard.ACCESS_PERMIT) {
 			setDefaultNickName(resNickName);
 			setPortNum(resPortNum);
-			System.out.println(
-					"[ResponseHandler] " + LinKlipboardClient.getGroupName() + "의 " + resNickName + "(닉네임)가  접속, 사용 포트번호: " + resPortNum);
+			System.out.println("[ResponseHandler] " + LinKlipboardClient.getGroupName() + "의 " + resNickName
+					+ "(닉네임)가  접속, 사용 포트번호: " + resPortNum);
 		}
 		// 만약 errorCode가 ERROR이면 errorMsg에 오류정보 set
 		else {
@@ -163,7 +163,7 @@ public class ResponseHandler {
 	public void setFileName(String fileName) {
 		client.setFileName(fileName);
 	}
-	
+
 	/** 클라이언트의 포트번호를 세팅 */
 	public void setPortNum(int portNum) {
 		client.setPortNum(portNum);
@@ -171,7 +171,7 @@ public class ResponseHandler {
 
 	/** 클라이언트가 서버에 전송한 Contents의 serialNum를 넘겨받아 세팅 */
 	public void setSerialNum(int serialNum) {
-
+		// 사용하지 않는 메소드?
 	}
 
 	/** 에러코드를 반환 */

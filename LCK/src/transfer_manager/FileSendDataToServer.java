@@ -62,7 +62,6 @@ public class FileSendDataToServer extends Thread {
 			sendFile = new File(getFilePathInSystemClipboard());
 			fileContents = new FileContents(getSendFile());
 			String fileName = "fileName=" + sendFile.getName();
-			
 
 			String header = groupName + "&" + fileName;
 			System.out.println("[requestSendFileData] 보낼 전체 데이터 확인" + header);
@@ -121,7 +120,9 @@ public class FileSendDataToServer extends Thread {
 			// 소켓 접속 설정
 			socket = new Socket(LinKlipboard.SERVER_IP, LinKlipboardClient.getPortNum());
 			// 스트림 설정
-			dos = new DataOutputStream(socket.getOutputStream()); // 바이트 배열을 보내기 위한 데이터스트림 생성
+			dos = new DataOutputStream(socket.getOutputStream()); // 바이트 배열을 보내기
+																	// 위한 데이터스트림
+																	// 생성
 
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
@@ -146,16 +147,20 @@ public class FileSendDataToServer extends Thread {
 		setConnection();
 
 		try {
-			byte[] sendFileTobyteArray = new byte[LinKlipboard.byteSize]; // 바이트 배열 생성
+			byte[] sendFileTobyteArray = new byte[LinKlipboard.byteSize]; // 바이트
+																			// 배열
+																			// 생성
 			int EndOfFile = 0; // 파일의 끝(-1)을 알리는 변수 선언
 
 			fis = new FileInputStream(getSendFile()); // 파일에서 읽어오기 위한 스트림 생성
 
 			/*
-			 * sendFileTobyteArray의 크기인 1024바이트 만큼 파일에서 읽어와 바이트 배열에 저장, EndOfFile에는 1024가 들어있음 파일의 끝에 다다를때(EndOfFile=-1 일 때)까지 반복
+			 * sendFileTobyteArray의 크기인 1024바이트 만큼 파일에서 읽어와 바이트 배열에 저장,
+			 * EndOfFile에는 1024가 들어있음 파일의 끝에 다다를때(EndOfFile=-1 일 때)까지 반복
 			 */
 			while ((EndOfFile = fis.read(sendFileTobyteArray)) != -1) {
-				// sendFileTobyteArray에 들어있는 바이트를 0~EndOfFile=1024 만큼 DataOutputStream으로 보냄
+				// sendFileTobyteArray에 들어있는 바이트를 0~EndOfFile=1024 만큼
+				// DataOutputStream으로 보냄
 				dos.write(sendFileTobyteArray, 0, EndOfFile);
 			}
 
@@ -197,12 +202,12 @@ public class FileSendDataToServer extends Thread {
 		}
 		return null;
 	}
-	
+
 	/** 클라이언트가 서버에 보낼 실제 파일을 리턴 */
 	public static File getSendFile() {
 		return sendFile;
 	}
-	
+
 	/** 클라이언트가 서버에 보낼 실제 파일의 이름을 리턴 */
 	public static String getSendFileName() {
 		return sendFile.getName();

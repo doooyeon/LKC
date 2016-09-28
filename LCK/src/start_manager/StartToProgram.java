@@ -7,12 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.concurrent.TimeoutException;
 
 import client_manager.LinKlipboardClient;
 import server_manager.LinKlipboard;
@@ -95,31 +92,14 @@ public class StartToProgram {
 				this.response = response;
 			}
 
-			// // 상훈 TEST 시작
-			// // 서버에 보낼 데이터(그룹정보)
-			// String message = "doy";
-			//
-			// // server에 그룹이름과 패스워드 전송(servlet이 받는 구분자: &)
-			// bout.write(message);
-			// bout.flush();
-			// bout.close();
-			// 상훈 TEST 끝
-
 			bin.close();
 
 			exceptionHandling(this.response);
 			System.out.println("[sendGroupInfoToServer] " + ResponseHandler.getErrorCodeNum());
 
 			if (ResponseHandler.getErrorCodeNum() == LinKlipboard.ACCESS_PERMIT) {
-				// if (orderMsg.equals("create")) {
-				// LinKlipboardClient.setHistory();
-				//
-				// } else if (orderMsg.equals("join")) {
-				// // 서버에 있는 Vector<Contents>를 받는다.
-				// LinKlipboardClient.setHistory();
-				// new GetInitDataFromServer(client);
-				// }
 
+				// Create Join 상관없이 새로운 Vector들을 생성한다.
 				LinKlipboardClient.setHistory();
 			}
 
@@ -143,7 +123,6 @@ public class StartToProgram {
 
 			// servlet의 doPost호출
 			conn.setDoOutput(true);
-			// conn.setDoInput(true);
 
 			// 서버에 보낼 데이터(닉네임)
 			BufferedWriter bout = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
@@ -157,18 +136,10 @@ public class StartToProgram {
 			// 서버로부터 받을 데이터(응답정보)
 			BufferedReader bin = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
-			// if ((response = bin.readLine()) != null) {
-			// // 서버에서 확인 후 클라이언트가 받은 결과 메세지
-			// //this.response = new String(response.getBytes("utf-8"),
-			// "utf-8");
-			// this.response = response;
-			// System.out.println(this.response);
-			// }
-			// else {
-			// System.out.println("왜 널이야 짜식아");
-			// }
-			// bin.close();
+			/* InputStramReader가 생성될 때 데이터를 보냄 */
+			// 야매?
 			this.response = Integer.toString(LinKlipboard.COMPLETE_APPLY);
+
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Vector;
 
 import client_manager.LinKlipboardClient;
 import datamanage.ClientInitData;
@@ -17,7 +16,7 @@ public class GetInitDataFromServer extends Transfer {
 	private ObjectInputStream in;
 
 	private ClientInitData initData;
-	
+
 	private ConnectionPanel connectionPanel;
 
 	/** GetTotalHistoryFromServer 생성자 */
@@ -63,24 +62,19 @@ public class GetInitDataFromServer extends Transfer {
 			System.out.println("[GetTotalHistoryFromServer] Vector<Contents> 수신 전");
 			initData = (ClientInitData) in.readObject();
 			System.out.println("[GetTotalHistoryFromServer] Vector<Contents> 수신 후");
-			//System.out.println("[GetTotalHistoryFromServer]" + historyInServer.get(0).getType());
 
-			
-			System.out.println("받은 initData의 크기: "+ initData.getClients().size());
-			
-			// 클라이언트 히스토리에 세팅해준다.
+			System.out.println("받은 initData의 크기: " + initData.getClients().size());
+
+			// 서버로부터 받은 접속자들을 세팅
 			LinKlipboardClient.setOtherClients(initData.getClients());
-			//Vector<Contents> history = initData.getHistory(); 
-			
-			//LinKlipboardClient.setHistory(history);
-			//client.setOtherClients(otherClientsInfo); 
 
 			System.out.println("서버로부터 수신 후 접속자 수 : " + LinKlipboardClient.getOtherClients().size());
-			
+
+			// 연결패널을 repaint
 			connectionPanel.updateAccessGroup();
 			connectionPanel.updateGroupName();
 			connectionPanel.updateSharedContents();
-			
+
 			closeSocket();
 
 			System.out.println("[GetTotalHistoryFromServer] 클라이언트 히스토리 초기화 완료");

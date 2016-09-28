@@ -20,8 +20,6 @@ import contents.FileContents;
 import contents.StringContents;
 import server_manager.LinKlipboard;
 import transfer_manager.FileReceiveDataToServer;
-import transfer_manager.FileSendDataToServer;
-import transfer_manager.SendDataToServer;
 
 public class ConnectionPanel extends BasePanel {
 	private JLabel accessGroupNameLabel; // 자신이 속한 그룹명
@@ -37,8 +35,8 @@ public class ConnectionPanel extends BasePanel {
 
 	private JButton receiveButton = new JButton();
 
-	private SendDataToServer sendStrImg;
-	private FileSendDataToServer sendFile;
+	// private SendDataToServer sendStrImg;
+	// private FileSendDataToServer sendFile;
 	private FileReceiveDataToServer receiveFile;
 
 	public ConnectionPanel(LinKlipboardClient client) {
@@ -61,8 +59,9 @@ public class ConnectionPanel extends BasePanel {
 		// accessGroupNameLabel.setOpaque(true);
 		add(accessGroupNameLabel);
 
-		System.out.println("[Connect] " + client.getOtherClients().size());
-		// accessCountLabel.setText("현재 " + client.getOtherClients().size() + "명 접속 중");
+		System.out.println("[Connect] " + LinKlipboardClient.getOtherClients().size());
+		// accessCountLabel.setText("현재 " + client.getOtherClients().size() + "명
+		// 접속 중");
 		accessCountLabel.setBounds(187, 20, 104, 20);
 		// accessCountLabel.setBackground(Color.GRAY);
 		// accessCountLabel.setOpaque(true);
@@ -113,7 +112,7 @@ public class ConnectionPanel extends BasePanel {
 			}
 
 			sharedContentsInfoLabel
-					.setText(LinKlipboardClient.getLatestContents().getSharer() + "님이 " + dataInfo  + dataType + " 공유");
+					.setText(LinKlipboardClient.getLatestContents().getSharer() + "님이 " + dataInfo + dataType + " 공유");
 		}
 
 		sharedTimeLabel.setBounds(50, 220, 150, 20);
@@ -137,11 +136,12 @@ public class ConnectionPanel extends BasePanel {
 		add(receiveButton);
 	}
 
+	/** 사용자 히스토리의 ScrollPane을 새로 그린다. */
 	public void initClientList() {
 		model = new DefaultListModel<>();
 		// add item to model
-		for (int i = 0; i < client.getOtherClients().size(); i++) {
-			model.add(0, client.getOtherClients().elementAt(i));
+		for (int i = 0; i < LinKlipboardClient.getOtherClients().size(); i++) {
+			model.add(0, LinKlipboardClient.getOtherClients().elementAt(i));
 		}
 
 		// create JList with model
@@ -152,12 +152,14 @@ public class ConnectionPanel extends BasePanel {
 		add(accessPersonScrollPane);
 	}
 
+	/** ui 업데이트 그룹이름 */
 	public void updateGroupName() {
 		accessGroupNameLabel.setText(LinKlipboardClient.getGroupName());
 	}
 
+	/** ui 업데이트 접속 인원 */
 	public void updateAccessGroup() {
-		accessCountLabel.setText("현재 " + client.getOtherClients().size() + "명 접속 중");
+		accessCountLabel.setText("현재 " + LinKlipboardClient.getOtherClients().size() + "명 접속 중");
 
 		remove(accessPersonScrollPane);
 		initClientList();
@@ -165,6 +167,7 @@ public class ConnectionPanel extends BasePanel {
 		accessPersonScrollPane.repaint();
 	}
 
+	/** ui 업데이트 공유 데이터 */
 	public void updateSharedContents(Contents latestContents) {
 		LinKlipboardClient.getLatestContents();
 		sharedTimeLabel.setText("[" + latestContents.getDate() + "]");
@@ -184,7 +187,7 @@ public class ConnectionPanel extends BasePanel {
 			StringContents sc = new StringContents();
 			sc = (StringContents) latestContents;
 			dataType = "텍스트";
-			dataInfo = "<" + sc.getString()+ ">";
+			dataInfo = "<" + sc.getString() + ">";
 		} else if (latestContents.getType() == LinKlipboard.IMAGE_TYPE) {
 			dataType = "이미지";
 			dataInfo = "";
@@ -199,9 +202,10 @@ public class ConnectionPanel extends BasePanel {
 			dataInfo = dealLengthOfDataInfo(dataInfo, 16);
 		}
 
-		sharedContentsInfoLabel.setText(latestContents.getSharer() + "님이 " + dataInfo  + dataType + " 공유");
+		sharedContentsInfoLabel.setText(latestContents.getSharer() + "님이 " + dataInfo + dataType + " 공유");
 	}
-	
+
+	/** 최신으로 공유된 Contents를 화면에 바로 표시하기 위한 메소드 */
 	public void updateSharedContents() {
 		LinKlipboardClient.getLatestContents();
 		sharedTimeLabel.setText("[" + now() + "]");
@@ -232,12 +236,11 @@ public class ConnectionPanel extends BasePanel {
 		return dataInfo.substring(0, cutSize) + "..";
 	}
 
-
 	/** @return YYYY-MM-DD HH:MM:SS 형식의 현재 시간 */
 	public static String now() {
 		Calendar cal = Calendar.getInstance();
 		String year = Integer.toString(cal.get(Calendar.YEAR));
-		String month = Integer.toString(cal.get(Calendar.MONTH)+1);
+		String month = Integer.toString(cal.get(Calendar.MONTH) + 1);
 		String date = Integer.toString(cal.get(Calendar.DATE));
 		String hour = Integer.toString(cal.get(Calendar.HOUR_OF_DAY));
 		if (Integer.parseInt(hour) < 10) {

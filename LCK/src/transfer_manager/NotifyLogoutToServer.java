@@ -12,11 +12,11 @@ import server_manager.LinKlipboard;
 
 public class NotifyLogoutToServer {
 	private LinKlipboardClient client;
-	
+
 	public NotifyLogoutToServer(LinKlipboardClient client) {
 		this.client = client;
 	}
-	
+
 	/** 종료를 알리는 서블릿 (ReportExit 서블릿 호출) */
 	public void requestReportExit() {
 		try {
@@ -35,6 +35,7 @@ public class NotifyLogoutToServer {
 			bout.write(header);
 			bout.flush();
 			bout.close();
+
 		} catch (MalformedURLException ex) {
 			ex.printStackTrace();
 		} catch (IOException ex) {

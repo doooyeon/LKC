@@ -107,7 +107,7 @@ public class SendDataToServer extends Thread {
 	public void setConnection() {
 		try {
 			// 소켓 접속 설정
-			socket = new Socket(LinKlipboard.SERVER_IP, LinKlipboardClient.getPortNum());
+			socket = new Socket(LinKlipboard.SERVER_IP, (LinKlipboardClient.getPortNum() + 2));
 			// 스트림 설정
 			out = new ObjectOutputStream(socket.getOutputStream());
 			System.out.println("[SendDataToServer] 연결 설정 끝");

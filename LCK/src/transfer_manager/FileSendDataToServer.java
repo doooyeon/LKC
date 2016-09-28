@@ -119,6 +119,7 @@ public class FileSendDataToServer extends Thread {
 		try {
 			// 소켓 접속 설정
 			socket = new Socket(LinKlipboard.SERVER_IP, LinKlipboardClient.getPortNum());
+			//socket = new Socket(LinKlipboard.SERVER_IP, (LinKlipboardClient.getPortNum()) + 3);
 			// 스트림 설정
 			dos = new DataOutputStream(socket.getOutputStream()); // 바이트 배열을 보내기
 																	// 위한 데이터스트림

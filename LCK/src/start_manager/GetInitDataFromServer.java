@@ -63,12 +63,12 @@ public class GetInitDataFromServer extends Transfer {
 			initData = (ClientInitData) in.readObject();
 			System.out.println("[GetTotalHistoryFromServer] Vector<Contents> 수신 후");
 
-			System.out.println("받은 initData의 크기: " + initData.getClients().size());
+			System.out.println("[GetTotalHistoryFromServer] 받은 initData의 크기: " + initData.getClients().size());
 
 			// 서버로부터 받은 접속자들을 세팅
 			LinKlipboardClient.setOtherClients(initData.getClients());
 
-			System.out.println("서버로부터 수신 후 접속자 수 : " + LinKlipboardClient.getOtherClients().size());
+			System.out.println("[GetTotalHistoryFromServer] 서버로부터 수신 후 접속자 수 : " + LinKlipboardClient.getOtherClients().size());
 
 			// 연결패널을 repaint
 			connectionPanel.updateAccessGroup();

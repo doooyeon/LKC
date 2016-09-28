@@ -341,7 +341,7 @@ public class LinKlipboardClient {
 																		// 객체의
 																		// 타입
 
-					System.out.println("최근에 받은 컨텐츠의 타입:" + latestContentsType);
+					System.out.println("[ReceiveContents] 최근에 받은 컨텐츠의 타입:" + latestContentsType);
 
 					if (latestContentsType == LinKlipboard.NULL) {
 						// sharer을 확인
@@ -353,7 +353,7 @@ public class LinKlipboardClient {
 						if (inoutClientInfo.equals("join")) {
 							String inClientNickname = tokens.nextToken();
 
-							System.out.println("join한 클라이언트의 닉네임:" + inClientNickname);
+							System.out.println("[ReceiveContents] join한 클라이언트의 닉네임:" + inClientNickname);
 
 							otherClients.add(inClientNickname);
 							connectionPanel.updateAccessGroup();
@@ -383,7 +383,7 @@ public class LinKlipboardClient {
 							} else if (latestContentsType == LinKlipboard.IMAGE_TYPE) {
 								main.getTrayIcon().showMsg("Shared <Image> Contents");
 							} else {
-								System.out.println("[LinKlipboardClient_알림] File, String, Image 어디에도 속하지 않음");
+								System.out.println("[[ReceiveContents]_알림] File, String, Image 어디에도 속하지 않음");
 							}
 						}
 					}

@@ -148,6 +148,7 @@ public class ConnectionPanel extends BasePanel {
 
 		// create JList with model
 		accessPersonList = new JList<String>(model);
+		accessPersonList.repaint();
 
 		accessPersonScrollPane = new JScrollPane(accessPersonList);
 		accessPersonScrollPane.setBounds(24, 50, 270, 150);
@@ -165,7 +166,7 @@ public class ConnectionPanel extends BasePanel {
 
 		remove(accessPersonScrollPane);
 		initClientList();
-		add(accessPersonScrollPane);
+		//add(accessPersonScrollPane);
 		accessPersonScrollPane.repaint();
 	}
 
